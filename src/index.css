@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles */
+body {
+  @apply font-sans antialiased;
+  scroll-behavior: smooth;
+  color: #e2e8f0;
+  background-image: radial-gradient(circle at top, rgba(124, 58, 237, 0.25), transparent 55%),
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), transparent 40%),
+    radial-gradient(circle at 80% 0%, rgba(37, 99, 235, 0.15), transparent 45%);
+  background-color: #030014;
+  min-height: 100vh;
+}
+
+body.light-mode {
+  color: #0f172a;
+  background-image: radial-gradient(circle at top, rgba(99, 102, 241, 0.25), transparent 55%),
+    radial-gradient(circle at 80% 0%, rgba(79, 70, 229, 0.12), transparent 45%),
+    radial-gradient(circle at 20% 20%, rgba(79, 70, 229, 0.08), transparent 40%);
+  background-color: #f8fafc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Grid background like Base44 */
+.bg-grid {
+  position: relative;
+  background-image: radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.15) 1px, transparent 0);
+  background-size: 42px 42px;
+  isolation: isolate;
+}
+
+.bg-grid::before {
+  content: "";
+  position: absolute;
+  inset: -200px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.25), transparent 60%);
+  animation: drift 25s linear infinite;
+  will-change: transform;
+  z-index: -2;
+}
+
+.bg-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 30%, rgba(124, 58, 237, 0.15), transparent 45%);
+  pointer-events: none;
+  will-change: transform;
+  z-index: -1;
+}
+
+/* Glass card */
+.glass-card {
+  @apply border border-white/10 rounded-3xl shadow-glow;
+  background-color: rgba(11, 16, 32, 0.9);
+}
+
+body.light-mode .glass-card {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+  color: #0f172a;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(-10%, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(10%, -5%, 0) scale(1.05);
+  }
+  100% {
+    transform: translate3d(-10%, 0, 0) scale(1);
+  }
+}
+
+@keyframes floaty {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-float-slow {
+  animation: floaty 12s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-delay {
+  animation: floaty 16s ease-in-out infinite;
+  animation-delay: 1.5s;
+  will-change: transform;
+}
+
+::selection {
+  background: rgba(124, 58, 237, 0.4);
+  color: #fff;
+}
